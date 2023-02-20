@@ -1,8 +1,20 @@
+
+package GUI.cliente;
+
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+
 
 public class Bloque {
 	

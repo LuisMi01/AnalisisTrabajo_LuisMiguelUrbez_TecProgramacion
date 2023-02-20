@@ -23,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
 	public static HashMap<String,SalidaTransaccion> UTXOs = new HashMap<String,SalidaTransaccion>();
 	
 	public static int dificultad = 3;
-	public static float transaccionMinima = 0.1f;
+    public static float transaccionMinima = 0.1f;
 	public static Transaccion transaccionOrigen;
 	
     /**

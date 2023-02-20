@@ -1,5 +1,9 @@
+
+package gui.cliente;
+
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.EntradaTransaccion;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.SalidaTransaccion;
 
 import java.security.*;
@@ -36,7 +40,7 @@ public class Transaccion {
 			i.UTXO = UTXOs.get(i.idSalidaTransaccion);
 		}
 
-		if(obtenerValorEntradas() < Principal.transaccionMinima) {
+		if(obtenerValorEntradas() < GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal.transaccionMinima) {
 			System.out.println("Las entradas de la transacci�n son demasiado peque�as: " + obtenerValorEntradas());
 			System.out.println("Por favor, introduzca una cantidad mayor a " + Principal.transaccionMinima);
 			return false;

@@ -1,24 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+package gui.cliente;
+
+import GUI.GUIBlockchain.G.src.guiblockchain.Bloque;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Cartera;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.EntradaTransaccion;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.SalidaTransaccion;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.security.Provider;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.security.Security;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Scanner;
 
-import com.google.gson.GsonBuilder;
-
-import gui.cliente.EntradaTransaccion;
-import gui.cliente.SalidaTransaccion;
-import gui.cliente.Transaccion;
 
 /**
  *
@@ -189,9 +190,6 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -206,20 +204,20 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal1().setVisible(true);
+                new Principal().setVisible(true);
             }
         });
     }
@@ -227,7 +225,7 @@ public class Principal extends javax.swing.JFrame {
     private void comenzar() {
     	
     	//Se a�aden los bloques al ArrayList cadenaBloques:
-    	Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Se utiliza Bouncey castle como proveedor de seguridad
+    	Security.addProvider(new BouncyCastleProvider()); //Se utiliza Bouncey castle como proveedor de seguridad
     			
     	//Creaci�n de las carteras:
     	carteraPagador = new Cartera();
@@ -271,12 +269,12 @@ public class Principal extends javax.swing.JFrame {
         	transaccionOrigen.generarFirma(euro.clavePrivada);	 //Se firma manualmente la transacci�n origen	
         	transaccionOrigen.idTransaccion = "0"; //Se asigna el id de la transacci�n manualmente
         	transaccionOrigen.salidas.add(new SalidaTransaccion(transaccionOrigen.destinatario, transaccionOrigen.valor, transaccionOrigen.idTransaccion)); //manually add the Transactions Output
-        	UTXOs.put(transaccionOrigen.salidas.get(0).id, transaccionOrigen.salidas.get(0)); //Es importante almacenar la primera transacci�n en la lista UTXOs.
-        			
+        	GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal.UTXOs.put(transaccionOrigen.salidas.get(0).id, transaccionOrigen.salidas.get(0)); //Es importante almacenar la primera transacci�n en la lista UTXOs.
+
         	System.out.println("creando y minando el bloque origen... ");
         	Bloque origen = new Bloque("0");
-        	origen.a�adirTransaccion(transaccionOrigen);
-        	a�adirBloque(origen);
+        	origen.anadirTransaccion(transaccionOrigen);
+        	anadirBloque(origen);
         	
         	//testing
         	Bloque bloque1 = new Bloque(origen.hash);
@@ -285,19 +283,19 @@ public class Principal extends javax.swing.JFrame {
         		if (cantidad==importe) {
         			System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
                 	System.out.println("\nEl pagador entrega " + cantidad + " � al recaudador...");
-                	bloque1.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+                	bloque1.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
                 	String cadenaCantidadEnviada = Float.toString(cantidad);
                 	out.writeUTF(cadenaCantidadEnviada);
-                	a�adirBloque(bloque1);
+                	anadirBloque(bloque1);
                 	System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
                 	System.out.println("el saldo de la cartera del recaudador es de: " + carteraRecaudador.obtenerSaldo() + " �");
         		} else if (cantidad>importe) {
         			System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() +  "�");
                 	System.out.println("\nEl pagador entrega " + cantidad + " � al recaudador...");
-                	bloque1.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+                	bloque1.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
                 	String cadenaCantidadEnviada = Float.toString(cantidad);
                 	out.writeUTF(cadenaCantidadEnviada);
-                	a�adirBloque(bloque1);
+                	anadirBloque(bloque1);
                 	System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
                 	System.out.println("el saldo de la cartera del recaudador es de: " + carteraRecaudador.obtenerSaldo() + " �");
                 	
@@ -305,7 +303,7 @@ public class Principal extends javax.swing.JFrame {
                 	String cadenaCambioRecibida = in.readUTF();
                 	float cambioRecibido = Float.parseFloat(cadenaCambioRecibida);
                 	System.out.println("\nEl recaudador devuelve " + cambioRecibido + " � al pagador...");
-                	bloque2.a�adirTransaccion(carteraRecaudador.enviarDinero(carteraPagador.clavePublica, cambioRecibido));
+                	bloque2.anadirTransaccion(carteraRecaudador.enviarDinero(carteraPagador.clavePublica, cambioRecibido));
                 	System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
                 	System.out.println("El saldo de la cartera del recaudador es de: " +carteraRecaudador.obtenerSaldo() + " �");
                 	
@@ -313,8 +311,8 @@ public class Principal extends javax.swing.JFrame {
         	} else if (cantidad>saldo) {
         		Bloque bloque2 = new Bloque(bloque1.hash);
             	System.out.println("\nEl pagador quiere entregar m�s dinero del que tiene...");
-           		bloque2.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
-            	a�adirBloque(bloque2);            	
+           		bloque2.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+            	anadirBloque(bloque2);
         	  }  		
       		
         	esValidaCadena();
@@ -322,7 +320,7 @@ public class Principal extends javax.swing.JFrame {
             sc.close();
  
         } catch (IOException ex) {
-            Logger.getLogger(Principal1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     }
@@ -358,7 +356,7 @@ public class Principal extends javax.swing.JFrame {
 			//Recorrido de las transacciones de la cadena de bloques:
 			SalidaTransaccion tempSalida;
 			for(int t=0; t <bloqueActual.transacciones.size(); t++) {
-				Transaccion transaccionActual = bloqueActual.transacciones.get(t);
+				Transaccion transaccionActual = (Transaccion) bloqueActual.transacciones;
 				
 				if(!transaccionActual.verificarFirma()) {
 					System.out.println("#La firma de la transacci�n(" + t + ") es inv�lida");
@@ -369,7 +367,7 @@ public class Principal extends javax.swing.JFrame {
 					return false; 
 				}
 				
-				for(EntradaTransaccion entrada: transaccionActual.entradas) {	
+				for(EntradaTransaccion entrada: transaccionActual.entradas) {
 					tempSalida = tempUTXOs.get(entrada.idSalidaTransaccion);
 					
 					if (tempSalida == null) {
@@ -395,7 +393,7 @@ public class Principal extends javax.swing.JFrame {
 				}
 			
 				if (transaccionActual.salidas.get(1).destinatario != transaccionActual.destinatario) {
-					System.out.println("#El 'cambio' de la salida de la transacci�n(" + t + ") no es del remitente.");
+					System.out.println("#El 'cambio' de la salida de la transaccion(" + t + ") no es del remitente.");
 					return false;
 				}
 				
@@ -406,7 +404,7 @@ public class Principal extends javax.swing.JFrame {
 		return true;
     }
 
-    private static void a�adirBloque(Bloque nuevoBloque) {
+    private static void anadirBloque(Bloque nuevoBloque) {
 		nuevoBloque.minarBloque(dificultad);
 		cadenaBloques.add(nuevoBloque);
 	}
@@ -423,5 +421,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
-    // End of variables declaration//GEN-END:variables
+
+	private class BouncyCastleProvider extends Provider {
+		protected BouncyCastleProvider(String name, String versionStr, String info) {
+			super(name, versionStr, info);
+		}
+
+		public BouncyCastleProvider() {
+			super("BC", "1.54", "BouncyCastle Security Provider v1.54");
+		}
+	}
+	// End of variables declaration//GEN-END:variables
 }

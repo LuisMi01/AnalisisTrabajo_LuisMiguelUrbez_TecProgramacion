@@ -1,6 +1,5 @@
 package GUI.GUIBlockchainTransacciones.src.blockchaintransacciones;
 import java.security.*;
-import java.security.Principal;
 import java.util.ArrayList;
 
 public class Transaccion {
@@ -37,9 +36,9 @@ public class Transaccion {
 		}
 
 		//Comprobaci�n si latransacci�n es v�lida:
-		if(obtenerValorEntradas() < Principal.transaccionMinima) {
-			System.out.println("Las entradas de la transacci�n son demasiado peque�as: " + obtenerValorEntradas());
-			System.out.println("Por favor, introduzca una cantidad mayor a " + Principal.transaccionMinima);
+		if(obtenerValorEntradas() < GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal.transaccionMinima) {
+			System.out.println("Las entradas de la transacci�n son demasiado pequenas: " + obtenerValorEntradas());
+			System.out.println("Por favor, introduzca una cantidad mayor a " + GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal.transaccionMinima);
 			return false;
 		}
 		
@@ -51,7 +50,7 @@ public class Transaccion {
 				
 		//A�ade salidas a la listas sin gasto
 		for(SalidaTransaccion o : salidas) {
-			Principal.UTXOs.put(o.id , o);
+			GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Principal.UTXOs.put(o.id , o);
 		}
 		
 		//Elimina las enradas de lastransacciones de las listas UTXO com pagadas:

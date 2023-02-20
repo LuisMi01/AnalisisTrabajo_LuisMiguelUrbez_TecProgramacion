@@ -1,4 +1,5 @@
 
+package gui.cliente;
 
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
 import java.security.PublicKey;

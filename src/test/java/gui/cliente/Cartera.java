@@ -1,3 +1,6 @@
+
+package gui.cliente;
+
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.EntradaTransaccion;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.SalidaTransaccion;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;

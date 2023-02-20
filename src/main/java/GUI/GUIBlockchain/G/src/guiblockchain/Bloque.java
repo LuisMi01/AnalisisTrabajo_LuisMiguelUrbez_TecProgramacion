@@ -1,17 +1,21 @@
 package GUI.GUIBlockchain.G.src.guiblockchain;
 
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
+import fiftyone.pipeline.core.typed.TypedKeyMap;
+
 import java.util.Date;
 
 public class Bloque {
 	
 	public String hash;
-	public String hashAnterior; 
+	public String hashAnterior;
+	public TypedKeyMap transacciones;
 	private String datos; //Los datos ser�n un mensaje.
 	private long timeStamp; //En milisegundos.
 	private int nonce;
 	
 	//Constructor.  
-	public Bloque(String datos,String hashAnterior) {
+	public Bloque(String datos) {
 		this.datos = datos;
 		this.hashAnterior = hashAnterior;
 		this.timeStamp = new Date().getTime();
@@ -39,5 +43,7 @@ public class Bloque {
 		}
 		System.out.println("���Bloque minado!!! : " + hash);
 	}
-	
+
+	public void anadirTransaccion(Transaccion transaccionOrigen) {
+	}
 }

@@ -13,5 +13,28 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>cn.nikeo.jsonBuilder</groupId>
+            <artifactId>jsonBuilder</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.holgerbrandl</groupId>
+            <artifactId>jsonbuilder</artifactId>
+            <version>0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.51degrees</groupId>
+            <artifactId>pipeline.jsonbuilder</artifactId>
+            <version>4.4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.nikeo.jsonBuilder</groupId>
+            <artifactId>jsonBuilder</artifactId>
+            <version>0.2.0</version>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
 
 </project>

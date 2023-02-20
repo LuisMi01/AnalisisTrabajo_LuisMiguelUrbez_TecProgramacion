@@ -29,7 +29,7 @@ public class Hash {
 	
 	//Se convierte Object en cadena json
 	public static String obtenerJson(Object o) {
-		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+		return new GsonBuilder().setPrettyPrinting().create().toString();
 	}
 	
 	//Devuelve la dificultad de la cadena destion para compararlo con el hash. Ej. La dificultad 5 devolver� "00000"  

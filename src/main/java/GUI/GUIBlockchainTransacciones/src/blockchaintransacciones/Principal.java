@@ -4,6 +4,9 @@
  */
 package GUI.GUIBlockchainTransacciones.src.blockchaintransacciones;
 
+
+import java.security.PrivilegedAction;
+import java.security.Provider;
 import java.security.Security;
 import java.util.ArrayList;
 
@@ -206,7 +209,7 @@ public class Principal extends javax.swing.JFrame {
     private void comenzar() {
     	
     	//Uso de Bouncey castle como proveeder de seguridad
-    	Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
+    	Security.addProvider(new BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
     			
     	//Creaci�n de las carteras:
     	Cartera carteraPagador = new Cartera();
@@ -238,5 +241,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
+
+    private class BouncyCastleProvider extends Provider {
+        protected BouncyCastleProvider(String name, String versionStr, String info) {
+            super(name, versionStr, info);
+        }
+
+        public BouncyCastleProvider() {
+            super("BC", "1.46", "BouncyCastle Security Provider v1.46");
+        }
+
+        private void setup() {
+        }
+    }
     // End of variables declaration//GEN-END:variables
 }

@@ -27,19 +27,19 @@ public class Transaccion {
 	public boolean procesarTransaccion() {
 		
 		if(verificarFirma() == false) {
-			System.out.println("#La firma de la transacci�n fall� en la verificaci�n");
+			System.out.println("#La firma de la transaccion fall� en la verificacion");
 			return false;
 		}
 				
 		//Obtenci�n de las entradas de la transaccion (Asegur�ndose de que son sin gasta):
 		for(EntradaTransaccion i : entradas) {
-			i.UTXO = java.security.Principal.UTXOs.get(i.idSalidaTransaccion);
+			i.UTXO = UTXOs.get(i.idSalidaTransaccion);
 		}
 
 		//Comprobaci�n si latransacci�n es v�lida:
-		if(obtenerValorEntradas() < java.security.Principal.transaccionMinima) {
+		if(obtenerValorEntradas() < Principal.transaccionMinima) {
 			System.out.println("Las entradas de la transacci�n son demasiado peque�as: " + obtenerValorEntradas());
-			System.out.println("Por favor, introduzca una cantidad mayor a " + java.security.Principal.transaccionMinima);
+			System.out.println("Por favor, introduzca una cantidad mayor a " + Principal.transaccionMinima);
 			return false;
 		}
 		
@@ -51,7 +51,7 @@ public class Transaccion {
 				
 		//A�ade salidas a la listas sin gasto
 		for(SalidaTransaccion o : salidas) {
-			java.security.Principal.UTXOs.put(o.id , o);
+			Principal.UTXOs.put(o.id , o);
 		}
 		
 		//Elimina las enradas de lastransacciones de las listas UTXO com pagadas:
@@ -97,5 +97,11 @@ public class Transaccion {
 				Hash.obtenerCadenaDesdeClave(destinatario) +
 				Float.toString(valor) + secuencia
 				);
+	}
+
+	private static class UTXOs {
+		public static SalidaTransaccion get(String idSalidaTransaccion) {
+			return null;
+		}
 	}
 }

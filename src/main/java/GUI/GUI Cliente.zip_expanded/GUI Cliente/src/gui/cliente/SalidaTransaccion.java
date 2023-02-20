@@ -1,6 +1,8 @@
-import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
 
+
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
 import java.security.PublicKey;
+
 
 public class SalidaTransaccion {
 	public String id;

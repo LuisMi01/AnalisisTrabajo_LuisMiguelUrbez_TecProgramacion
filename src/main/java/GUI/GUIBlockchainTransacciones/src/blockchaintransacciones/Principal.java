@@ -24,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
 	public static Transaccion transaccionOrigen;
 	
     /**
-     * Creates new form Principal
+     * Creates new form Principal1
      */
     public Principal() {
         initComponents();

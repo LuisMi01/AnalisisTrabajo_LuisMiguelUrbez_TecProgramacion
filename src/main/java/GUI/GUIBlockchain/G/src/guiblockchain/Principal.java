@@ -6,11 +6,6 @@ package GUI.GUIBlockchain.G.src.guiblockchain;
 
 import java.util.ArrayList;
 
-import com.google.gson.GsonBuilder;
-
-import guiblockchain.Bloque;
-import guiblockchain.Hash;
-
 /**
  *
  * @author pc
@@ -21,7 +16,7 @@ public class Principal extends javax.swing.JFrame {
 	public static int dificultad = 5;
 	
     /**
-     * Creates new form Principal
+     * Creates new form Principal1
      */
     public Principal() {
         initComponents();
@@ -164,11 +159,11 @@ public class Principal extends javax.swing.JFrame {
     	int numero = (Integer)jSpinner1.getValue();
     	
     	System.out.println("Minando bloque 1... ");
-    	a�adirBloque(new Bloque("Bloque 1", "0"));
+    	anadirBloque(new Bloque("Bloque 1", "0"));
     	
     	for (int i=1;i<numero;i++) {
     		System.out.println("Minando bloque " + (i+1) + "... ");
-    		a�adirBloque(new Bloque("Bloque " + (i+1),cadenaBloques.get(cadenaBloques.size()-1).hash));
+    		anadirBloque(new Bloque("Bloque " + (i+1),cadenaBloques.get(cadenaBloques.size()-1).hash));
     	}
     	
     	System.out.println("\nLa cadena de bloques es v�lida: " + esValidaCadena());
@@ -210,7 +205,7 @@ public class Principal extends javax.swing.JFrame {
 		return true;
     }
 
-	public static void a�adirBloque(Bloque nuevoBloque) {
+	public static void anadirBloque(Bloque nuevoBloque) {
 		nuevoBloque.minarBloque(dificultad);
 		cadenaBloques.add(nuevoBloque);
 	}

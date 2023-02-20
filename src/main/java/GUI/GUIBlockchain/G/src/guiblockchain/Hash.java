@@ -1,7 +1,7 @@
 package GUI.GUIBlockchain.G.src.guiblockchain;
 
 import java.security.MessageDigest;
-import com.google.gson.GsonBuilder;
+
 
 public class Hash {
 	

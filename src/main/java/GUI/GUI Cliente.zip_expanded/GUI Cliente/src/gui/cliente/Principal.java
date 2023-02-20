@@ -11,13 +11,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.security.Security;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import com.google.gson.GsonBuilder;
 
-import Bloque;
 import gui.cliente.EntradaTransaccion;
 import gui.cliente.SalidaTransaccion;
 import gui.cliente.Transaccion;
@@ -38,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
 	public static Transaccion transaccionOrigen;
 	
     /**
-     * Creates new form Principal
+     * Creates new form Principal1
      */
     public Principal() {
         initComponents();
@@ -208,20 +206,20 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new Principal1().setVisible(true);
             }
         });
     }
@@ -324,7 +322,7 @@ public class Principal extends javax.swing.JFrame {
             sc.close();
  
         } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Principal1.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     }

@@ -1,4 +1,6 @@
 package GUI.GUIBlockchainTransacciones.src.blockchaintransacciones;
+import GUI.GUIBlockchain.G.src.guiblockchain.GsonBuilder;
+
 import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -60,7 +62,7 @@ public class Hash {
 	
 	//Convierte Object en cadena json
 	public static String obtenerJson(Object o) {
-		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+		return new GsonBuilder().setPrettyPrinting().create().toString();
 	}
 	
 	//Devoluci�n de dificultad de cadena detino para compararlo con el hash. Ej. la dificultad 5 devolver� "00000"  

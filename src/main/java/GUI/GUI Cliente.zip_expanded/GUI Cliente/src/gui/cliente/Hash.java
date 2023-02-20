@@ -1,3 +1,4 @@
+import GUI.GUIBlockchain.G.src.guiblockchain.GsonBuilder;
 import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
 
 import java.security.*;

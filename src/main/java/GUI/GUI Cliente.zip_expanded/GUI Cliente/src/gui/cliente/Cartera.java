@@ -13,7 +13,7 @@ public class Cartera {
 	public PrivateKey clavePrivada;
 	public PublicKey clavePublica;
 	
-	public HashMap<String, SalidaTransaccion> UTXOs = new HashMap<String,SalidaTransaccion>();
+	public static HashMap<String, SalidaTransaccion> UTXOs = new HashMap<String,SalidaTransaccion>();
 	
 	public Cartera() {
 		generarParClaves();
@@ -38,7 +38,7 @@ public class Cartera {
 	
 	public float obtenerSaldo() {
 		float total = 0;	
-        for (Map.Entry<String, SalidaTransaccion> item: Principal.UTXOs.entrySet()){
+        for (Map.Entry<String, SalidaTransaccion> item: Cartera.UTXOs.entrySet()){
         	SalidaTransaccion UTXO = item.getValue();
             if(UTXO.esMia(clavePublica)) { //Si la salida (monedas) me pertenece
             	UTXOs.put(UTXO.id,UTXO); //Se a�ade a la lista de transacciones sin gasto.
@@ -72,7 +72,9 @@ public class Cartera {
 		
 		return nuevaTransaccion;
 	}
-	
+
+	private class UTXOs {
+	}
 }
 
 

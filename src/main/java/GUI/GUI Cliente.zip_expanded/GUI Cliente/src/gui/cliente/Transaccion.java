@@ -33,7 +33,7 @@ public class Transaccion {
 			return false;
 		}
 		for(EntradaTransaccion i : entradas) {
-			i.UTXO = Principal.UTXOs.get(i.idSalidaTransaccion);
+			i.UTXO = UTXOs.get(i.idSalidaTransaccion);
 		}
 
 		if(obtenerValorEntradas() < Principal.transaccionMinima) {
@@ -50,13 +50,13 @@ public class Transaccion {
 				
 		//A�ade salidas a las listas sin gasto
 		for(SalidaTransaccion o : salidas) {
-			Principal.UTXOs.put(o.id, o);
+			UTXOs.put(o.id, o);
 		}
 		
 		//Elimina las entradas de las transacciones de las listas UTXO como pagadas:
 		for(EntradaTransaccion i : entradas) {
 			if(i.UTXO == null) continue; //Si la transacci�n no se ha encontrado se omite 
-			Principal.UTXOs.remove(i.UTXO.id);
+			UTXO1s.remove(i.UTXO.id);
 		}
 		
 		return true;
@@ -96,5 +96,19 @@ public class Transaccion {
 				Hash.obtenerCadenaDesdeClave(destinatario) +
 				Float.toString(valor) + secuencia
 				);
+	}
+
+	private static class UTXOs {
+		public static void put(String id, SalidaTransaccion o) {
+		}
+
+		public static SalidaTransaccion get(String idSalidaTransaccion) {
+			return null;
+		}
+	}
+
+	private static class UTXO1s {
+		public static void remove(String id) {
+		}
 	}
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,14 +6,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
-import java.io.DataInputStream;
-
-/**
- *
- * @author pc
- */
 
 public class Principal extends javax.swing.JFrame {
 

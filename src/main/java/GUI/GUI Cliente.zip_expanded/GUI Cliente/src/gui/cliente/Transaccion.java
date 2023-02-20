@@ -1,3 +1,7 @@
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.EntradaTransaccion;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.SalidaTransaccion;
+
 import java.security.*;
 import java.util.ArrayList;
 
@@ -25,16 +29,13 @@ public class Transaccion {
 	public boolean procesarTransaccion() {
 		
 		if(verificarFirma() == false) {
-			System.out.println("#La firma de la transacci�n fall� en la verificaci�n");
+			System.out.println("#La firma de la transaccion fall en la verificacion");
 			return false;
 		}
-				
-		//Obtenci�n de las entradas de la transacci�n (Asegur�ndose de que son sin gasto):
 		for(EntradaTransaccion i : entradas) {
 			i.UTXO = Principal.UTXOs.get(i.idSalidaTransaccion);
 		}
 
-		//Se comprueba si la transacci�n es v�lida:
 		if(obtenerValorEntradas() < Principal.transaccionMinima) {
 			System.out.println("Las entradas de la transacci�n son demasiado peque�as: " + obtenerValorEntradas());
 			System.out.println("Por favor, introduzca una cantidad mayor a " + Principal.transaccionMinima);

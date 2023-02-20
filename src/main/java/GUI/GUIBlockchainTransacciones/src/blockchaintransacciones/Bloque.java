@@ -43,7 +43,7 @@ public class Bloque {
 	}
 	
 	//Se a�aden las transacciones al bloque
-	public boolean a�adirTransaccion(Transaccion transaccion) {
+	public boolean anadirTransaccion(Transaccion transaccion) {
 		//Procesamiento de la transaccion y comprobaci�nn de su validez, si no es el bloque origen se ignora.
 		if(transaccion == null) return false;		
 		if((!"0".equals(hashAnterior))) {

@@ -1,3 +1,6 @@
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Hash;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +23,7 @@ public class Bloque {
 	
 	//C�lculo del nuevo hash basado en el contenido de los bloques
 	public String calcularHash() {
-		String hashCalculado = Hash.aplicarSha256( 
+		String hashCalculado = Hash.aplicarSha256(
 				hashAnterior +
 				Long.toString(timeStamp) +
 				Integer.toString(nonce) + 
@@ -41,7 +44,7 @@ public class Bloque {
 	}
 	
 	//Se a�aden las transacciones al bloque
-	public boolean a�adirTransaccion(Transaccion transaccion) {
+	public boolean anadirTransaccion(Transaccion transaccion) {
 		//Procesamiento de la transaccion y comprobaci�n de su validez, si no es el bloque origen se ignora.
 		if(transaccion == null) return false;		
 		if((!"0".equals(hashAnterior))) {

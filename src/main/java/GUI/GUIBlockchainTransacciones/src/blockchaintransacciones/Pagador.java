@@ -31,12 +31,12 @@ public class Pagador extends Thread {
 	
 	public void run() {
 		
-		a�adirDinero(saldo);
+		anadirDinero(saldo);
 		pagarImpuesto(cantidad);
 		
 	}
 	
-	public void a�adirDinero(float saldo) {
+	public void anadirDinero(float saldo) {
 		transaccionOrigen = new Transaccion(euro.clavePublica, carteraPagador.clavePublica, saldo, null);
 		transaccionOrigen.generarFirma(euro.clavePrivada);	 //Se firma la transaccion origen manualmente	
 		transaccionOrigen.idTransaccion = "0"; //Se asigna el id de la transacci�n manualmente
@@ -49,8 +49,8 @@ public class Pagador extends Thread {
 		
 		System.out.println("Creando y minando el bloque origen... ");
 		Bloque origen = new Bloque("0");
-		origen.a�adirTransaccion(transaccionOrigen);
-		a�adirBloque(origen);
+		origen.anadirTransaccion(transaccionOrigen);
+		anadirBloque(origen);
 		Bloque bloque1 = new Bloque(origen.hash);
 
 		if (cantidad<saldo) {
@@ -59,8 +59,8 @@ public class Pagador extends Thread {
 				
 				System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 				System.out.println("\nEl pagador entrega la cantidad de " + cantidad + " � al recaudador...");
-				bloque1.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
-				a�adirBloque(bloque1);
+				bloque1.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+				anadirBloque(bloque1);
 				System.out.println("\nEl saldo de la cartera de pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 				System.out.println("El saldo de la cartera del recaudador es de: " + carteraRecaudador.obtenerSaldo() + " �");
 				
@@ -68,8 +68,8 @@ public class Pagador extends Thread {
 				
 				System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 				System.out.println("\nEl pagador entrega la cantidad de " + cantidad + " � al recaudador...");
-				bloque1.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
-				a�adirBloque(bloque1);
+				bloque1.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+				anadirBloque(bloque1);
 				System.out.println("\nEl saldo de la cartera de pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 				System.out.println("El saldo de la cartera del recaudador es de: " + carteraRecaudador.obtenerSaldo() + " �");
 				
@@ -77,7 +77,7 @@ public class Pagador extends Thread {
 				
 				Bloque bloque2 = new Bloque(bloque1.hash);
 				System.out.println("\nEl recaudador devuelve " + cambio + " � al pagador...");
-				bloque2.a�adirTransaccion(carteraRecaudador.enviarDinero(carteraPagador.clavePublica, cambio));
+				bloque2.anadirTransaccion(carteraRecaudador.enviarDinero(carteraPagador.clavePublica, cambio));
 				System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 				System.out.println("El saldo de la cartera del recaudador es de: " + carteraRecaudador.obtenerSaldo() + " �");
 				
@@ -87,8 +87,8 @@ public class Pagador extends Thread {
 			
 			Bloque bloque2 = new Bloque(bloque1.hash);
 			System.out.println("\nEl pagador quiere entregar m�s dinero del que tiene...");
-			bloque2.a�adirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
-			a�adirBloque(bloque2);
+			bloque2.anadirTransaccion(carteraPagador.enviarDinero(carteraRecaudador.clavePublica, cantidad));
+			anadirBloque(bloque2);
 			System.out.println("\nEl saldo de la cartera del pagador es de: " + carteraPagador.obtenerSaldo() + " �");
 			System.out.println("El saldo de la cartera del recauadador es de: " + carteraRecaudador.obtenerSaldo() + " �");
 			
@@ -175,7 +175,7 @@ public class Pagador extends Thread {
 		return true;
 	}
 	
-	private void a�adirBloque(Bloque nuevoBloque) {
+	private void anadirBloque(Bloque nuevoBloque) {
 		nuevoBloque.minarBloque(dificultad);
 		cadenaBloques.add(nuevoBloque);
 	}

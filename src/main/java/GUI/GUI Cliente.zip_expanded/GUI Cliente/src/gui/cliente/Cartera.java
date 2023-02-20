@@ -1,3 +1,7 @@
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.EntradaTransaccion;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.SalidaTransaccion;
+import GUI.GUIBlockchainTransacciones.src.blockchaintransacciones.Transaccion;
+
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;
 import java.util.ArrayList;
@@ -9,7 +13,7 @@ public class Cartera {
 	public PrivateKey clavePrivada;
 	public PublicKey clavePublica;
 	
-	public HashMap<String,SalidaTransaccion> UTXOs = new HashMap<String,SalidaTransaccion>();
+	public HashMap<String, SalidaTransaccion> UTXOs = new HashMap<String,SalidaTransaccion>();
 	
 	public Cartera() {
 		generarParClaves();
@@ -44,7 +48,7 @@ public class Cartera {
 		return total;
 	}
 	
-	public Transaccion enviarDinero(PublicKey _destinatario,float valor ) {
+	public Transaccion enviarDinero(PublicKey _destinatario, float valor ) {
 		if(obtenerSaldo() < valor) {
 			System.out.println("#No hay suficiente dinero para enviar la transacci�n. Transacci�n descartada.");
 			return null;

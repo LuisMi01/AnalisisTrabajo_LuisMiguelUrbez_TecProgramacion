@@ -2,12 +2,12 @@ package GUI.GUIBlockchainTransacciones.src.blockchaintransacciones;
 import java.security.*;
 import java.util.ArrayList;
 import java.util.Base64;
-import com.google.gson.GsonBuilder;
+
 import java.util.List;
 
 public class Hash {
 	
-	//Aplicaci�n de Sha256 a la cadena y devoluci�n del resultado. 
+	//Aplicacin de Sha256 a la cadena y devoluci�n del resultado.
 	public static String aplicarSha256(String entrada){
 		
 		try {
